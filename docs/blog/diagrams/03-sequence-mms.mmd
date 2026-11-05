@@ -1,0 +1,33 @@
+sequenceDiagram
+  autonumber
+  actor E as 工程师
+  participant UI as 主工作区
+  participant M as Electron主进程
+  participant V as 转换/校验子进程
+  participant B as ServerEngine
+  participant I as libiec61850
+  participant C as MMS客户端
+  E->>UI: 导入CID，选择IED/AP
+  UI->>M: 受限IPC import / confirm
+  M->>V: genconfig转换 + CFG校验
+  V-->>M: CFG与诊断
+  M->>B: Apply(Project, config_path)
+  B->>I: 构建IedModel/IedServer并注册回调
+  B-->>M: 配置成功；GetModel/Snapshot
+  M-->>UI: 工程和模型
+  E->>UI: 启动服务
+  M->>B: Start
+  B->>I: 监听MMS端口
+  C->>I: Connect / 模型发现 / Read
+  I-->>C: 真实模型与值
+  C->>I: 配置RCB，RptEna + GI
+  I-->>C: 报告
+  E->>UI: 修改测量值
+  M->>B: Update(reference,value,q,blocked)
+  B->>I: 锁内更新DA与时间
+  I-->>C: 按RCB条件产生后续报告
+  loop 工作区状态更新
+    M->>B: Snapshot（约500ms）
+    B-->>M: 点值、报告、连接、事件
+    M-->>UI: 仅更新可见数据
+  end

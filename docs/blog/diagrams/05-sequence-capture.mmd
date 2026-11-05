@@ -1,0 +1,36 @@
+sequenceDiagram
+  autonumber
+  actor E as 工程师
+  participant W as 独立分析窗口
+  participant M as Capture主进程桥接
+  participant H as Helper/DLL
+  participant T as Dumpcap/TShark
+  participant D as 文件/磁盘索引
+  participant B as 本机IED引擎
+  E->>W: 明确选择网卡、过滤器、输出文件
+  W->>M: capture-start
+  M->>H: JSONL请求
+  H->>T: Dumpcap捕获（独立Job）
+  T->>D: 持续写PCAPNG
+  E->>W: 停止并分析
+  M->>H: capture-stop / open
+  H->>T: 优雅停止并完成文件
+  H->>T: TShark两遍解码/按需语义索引
+  T-->>H: 逐帧摘要与层级JSON
+  H->>D: 落盘摘要/详情/语义与偏移索引
+  W->>M: packets / detail / replay
+  M->>H: 分页或指定帧
+  H->>D: 随机读取与有界缓存
+  D-->>W: 经桥接返回协议树、已观察值
+  E->>W: 离线播放/定位
+  W->>H: 经桥接请求累计snapshot
+  H-->>W: 截止目标帧的已观察状态
+  opt 显式确认本机测量值映射
+    E->>M: 原生确认映射
+    W->>M: replay-frame（只提供帧号）
+    M->>H: 重新读取可信解码结果
+    M->>M: 检查ST/MX、完整标量、非写意图、授权未撤销
+    M->>B: 运行/仿真/控制目标复核后Update
+    B-->>W: 应用或拒绝结果
+  end
+  Note over W,B: 离线播放不重发原始TCP、遥控或定值写入

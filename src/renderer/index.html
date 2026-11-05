@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'"
+    />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>IEC61850 Service Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../shared/theme.css" />
+    <script src="../shared/theme-renderer.js"></script>
+  </head>
+  <body>
+    <header class="toolbar" aria-label="主工具栏">
+      <div class="brand">
+        <span class="brand-icon">S</span><span>SERVICE <b>STUDIO</b></span>
+      </div>
+      <span class="separator"></span>
+      <button data-action="new" title="新建工程 Ctrl+N"><i>▱</i>新建</button
+      ><button data-action="open" title="打开工程 Ctrl+O"><i>▰</i>打开</button
+      ><button data-action="save" title="保存 Ctrl+S"><i>▣</i>保存</button
+      ><button data-action="import" title="导入 ICD / CID / SCD / IID / CFG">
+        <i>↧</i>导入模型
+      </button>
+      <span class="separator"></span
+      ><button data-action="start" class="start" title="启动 MMS F5">
+        <i>▶</i>启动服务</button
+      ><button data-action="stop" class="stop" title="停止 Shift+F5">
+        <i>■</i>停止</button
+      ><button data-action="simulation" title="切换仿真 F6">
+        <i>∿</i><span id="sim-label">运行仿真</span></button
+      ><span class="separator"></span
+      ><button data-action="refresh" title="刷新 Ctrl+R"><i>⟳</i></button
+      ><button data-action="settings" title="服务配置 Alt+Enter">
+        <i>⚙</i>
+      </button>
+      <button data-action="publishers" title="GOOSE / SV 发布管理">发布</button
+      ><button data-action="tls-settings" title="TLS 安全通信">TLS</button
+      ><button data-action="setting-groups" title="持久化定值组">定值组</button
+      ><button
+        data-action="capture"
+        title="独立报文抓取与分析窗口 Ctrl+Shift+P"
+      >
+        报文分析
+      </button>
+      <div class="toolbar-right">
+        <span id="connection-pill" class="pill">● 服务已停止</span>
+      </div>
+    </header>
+    <div class="workspace-bar">
+      <span id="project-title">工程加载中…</span
+      ><span id="source-label">本地工程</span><span class="grow"></span
+      ><span class="subtle">IEC 61850 Edition 2 · MMS</span>
+    </div>
+    <div id="error-banner" role="alert" hidden>
+      <span id="error-text"></span
+      ><button id="dismiss-error" title="关闭错误提示">×</button>
+    </div>
+    <main id="workspace">
+      <aside id="navigator">
+        <div class="panel-heading">
+          工程导航<span class="grow"></span
+          ><button data-action="import" title="导入模型">＋</button>
+        </div>
+        <div class="search-wrap">
+          <input
+            id="tree-search"
+            aria-label="搜索模型树"
+            placeholder="筛选模型名称…"
+          />
+        </div>
+        <div id="tree" role="tree"></div>
+        <div class="nav-bottom">
+          <span class="subtle">服务端端点</span><strong id="endpoint"></strong
+          ><span id="model-count"></span>
+        </div>
+      </aside>
+      <div class="splitter vertical" data-split="left"></div>
+      <section id="editor">
+        <nav id="tabs" role="tablist"></nav>
+        <div class="editor-tools">
+          <strong id="view-title">数据模型</strong
+          ><span id="view-count" class="subtle"></span><span class="grow"></span
+          ><button id="add-button" data-action="add-point">＋ 新增点位</button
+          ><button data-action="update-value" id="value-button">
+            修改运行值</button
+          ><input
+            id="filter"
+            aria-label="筛选当前列表"
+            placeholder="筛选引用、描述或类型…"
+          />
+        </div>
+        <div id="view-note" class="view-note" hidden></div>
+        <div id="table-area" tabindex="0"></div>
+        <div class="table-footer">
+          <span id="selection-label"
+            >选择对象查看属性；双击编辑，右键更多操作</span
+          ><span class="grow"></span><span id="refresh-time"></span>
+        </div>
+      </section>
+      <div class="splitter vertical" data-split="right"></div>
+      <aside id="inspector">
+        <div class="panel-heading">
+          属性<span class="grow"></span
+          ><button data-action="toggle-properties" title="隐藏属性">×</button>
+        </div>
+        <div id="properties"></div>
+      </aside>
+      <div class="splitter horizontal" data-split="bottom"></div>
+      <section id="event-panel">
+        <div class="event-heading">
+          <strong>事件与诊断</strong
+          ><span id="event-count" class="count">0</span
+          ><span class="grow"></span
+          ><select id="log-level" aria-label="日志级别">
+            <option value="">全部级别</option>
+            <option>INFO</option>
+            <option>WARN</option>
+            <option>ERROR</option></select
+          ><select id="log-category" aria-label="日志类别">
+            <option value="">全部服务</option>
+            <option>SERVER</option>
+            <option>SESSION</option>
+            <option>REPORT</option>
+            <option>CONTROL</option>
+            <option>VALUE</option>
+            <option>SIMULATION</option></select
+          ><button id="pause-log">暂停滚动</button
+          ><button data-action="export-log">导出</button
+          ><button id="clear-log">清空视图</button>
+        </div>
+        <div id="logs"></div>
+      </section>
+    </main>
+    <footer id="statusbar">
+      <span id="status-led">●</span><span id="status-text">后端初始化</span
+      ><span class="status-divider"></span
+      ><span id="status-clients">客户端 0</span
+      ><span id="status-updates">更新 0</span
+      ><span id="status-controls">遥控 0</span><span class="grow"></span
+      ><span id="status-uptime">运行时间 —</span
+      ><span class="status-divider"></span
+      ><span id="status-lib">libiec61850</span>
+    </footer>
+    <dialog id="dialog">
+      <form id="dialog-form">
+        <div class="dialog-heading">
+          <h2 id="dialog-title"></h2>
+          <button type="button" id="dialog-close" aria-label="关闭">×</button>
+        </div>
+        <div id="dialog-body"></div>
+        <p id="dialog-error" role="alert"></p>
+        <div class="dialog-footer">
+          <button type="button" id="dialog-cancel">取消</button
+          ><button type="submit" id="dialog-ok" class="primary">确定</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="attributes-dialog" aria-labelledby="attributes-title">
+      <div class="dialog-heading">
+        <h2 id="attributes-title">数据对象的数据属性</h2>
+        <button type="button" id="attributes-close" aria-label="关闭">×</button>
+      </div>
+      <div class="attributes-toolbar">
+        <strong id="attributes-reference"></strong><span class="grow"></span
+        ><button id="attributes-expand">全部展开</button
+        ><button id="attributes-collapse">全部折叠</button
+        ><button id="attributes-refresh">刷新值</button>
+      </div>
+      <div id="attributes-tree" tabindex="0"></div>
+      <p id="attributes-error" role="alert"></p>
+      <div class="dialog-footer">
+        <span id="attributes-status"></span><span class="grow"></span
+        ><button id="attributes-done" class="primary">关闭</button>
+      </div>
+    </dialog>
+    <div id="toast" role="status" hidden></div>
+    <script type="module" src="renderer.js"></script>
+  </body>
+</html>

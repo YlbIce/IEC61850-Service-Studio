@@ -1,0 +1,32 @@
+flowchart TD
+  SCL["SCL 文件：选择 IED / AccessPoint"] --> CHECK["XML / 大小 / 外部实体检查"]
+  CHECK --> JAVA["genconfig.jar → CFG"]
+  CFG["libiec61850 CFG"] --> VALIDATE["文本预检 + 独立原生解析"]
+  JAVA --> VALIDATE
+  VALIDATE --> PROJECT["工程：元数据 + 内嵌 CFG
+或可编辑点位、数据集、报告"]
+  PROJECT --> APPLY["Apply → IedModel + IedServer"]
+  UI["手工改值 / 波形 / 受限回放"] --> UPDATE["Update：值 / 品质 / 时间
+模型锁内更新运行缓存"]
+  APPLY --> UPDATE
+  UPDATE --> WIRE["MMS Read / URCB / BRCB
+GOOSE / SV：克隆数据集后发布"]
+  WIRE --> CLIENT["Client Studio / 第三方客户端"]
+  UPDATE --> SNAP["Snapshot：运行状态
+GetModel：结构与属性值"]
+  SNAP --> VIEW["500 ms 状态轮询
+虚拟列表 + 可见单元格增量刷新"]
+  WIRE -.->|选定接口可见流量| PCAP["Dumpcap → PCAPNG
+停止后分析"]
+  FILE["已有 PCAP / PCAPNG"] --> DECODE
+  PCAP --> DECODE["TShark 重组与解码
+磁盘摘要 / 详情 / 语义索引"]
+  DECODE --> SEM["关联 Read 请求与响应
+Report inclusion / 目录上下文"]
+  SEM --> OBS["已观察值事件
+引用 + FC + 类型 + 值 + 来源帧"]
+  OBS --> PLAY["离线时间轴与累计快照
+未知值保持未知"]
+  PLAY -.->|另行确认目标映射
+排除 CO / 写意图 / 不完整数据| UI
+  UPDATE --> AUDIT[("审计事件与本地日志")]

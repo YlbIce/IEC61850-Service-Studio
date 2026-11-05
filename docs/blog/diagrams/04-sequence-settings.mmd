@@ -1,0 +1,31 @@
+sequenceDiagram
+  autonumber
+  participant C as MMS客户端
+  participant I as SGCB/模型回调
+  participant S as SettingStore
+  participant F as Windows文件系统
+  C->>I: 选择EditSG
+  I->>S: 申请编辑组与预约
+  S-->>I: 载入SE编辑值
+  I-->>C: 成功；其他客户端不能抢占
+  C->>I: 写SE属性
+  I-->>C: 写入编辑缓存
+  C->>I: CnfEdit确认
+  I->>S: 事务确认回调（bool）
+  S->>S: 克隆候选定值库，MMS BER序列化
+  S->>F: 写临时文件 + FlushFileBuffers
+  S->>F: MoveFileEx原子替换 + WRITE_THROUGH
+  alt 写盘成功
+    F-->>S: 成功
+    S->>S: 提交内存定值库
+    S-->>I: true
+    I-->>C: 确认成功；结束编辑
+    C->>I: ActSG切换激活组
+    I->>S: 持久化激活组并载入SG值
+    I-->>C: 切换结果
+  else 写盘失败
+    F-->>S: 失败
+    S-->>I: false，保留原定值库
+    I-->>C: MMS hardware-fault，保留编辑预约
+  end
+  Note over I,S: numOfSGs=0时跳过定值库初始化；不创建持久化文件

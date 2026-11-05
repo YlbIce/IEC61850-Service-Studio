@@ -1,0 +1,183 @@
+{
+  "passed": true,
+  "transport": "mock only, no DeepSeek call",
+  "dpapi": true,
+  "cloudConsent": true,
+  "evidenceNavigation": true,
+  "jumpScan": {
+    "reference": "STUDIOLD0/GGIO1.AnIn1.mag.f",
+    "changes": [],
+    "total_changes": 0,
+    "invalid_time_intervals": 0,
+    "skipped_numeric_or_stream": 0,
+    "thresholds_configured": false,
+    "interpretation": "只列出最大变化，未设置异常判据",
+    "examined_events": 8,
+    "total_events": 8,
+    "matching_frames": 1,
+    "partial": false,
+    "scope": "最多扫描前1000个语义事件/120个匹配帧；同一TCP流、FC、来源分别比较，不跨客户端混合。",
+    "limits": [
+      "仅完整且已解析的ST/MX数值；整数超过JS安全范围不转换。",
+      "抓包时间不等于采样时间，缺少品质保持未知。",
+      "本次扫描不能识别所有突刺、量程/比例错误或周期性异常。"
+    ]
+  },
+  "connectionScan": {
+    "streams": [
+      {
+        "stream": "0",
+        "syn_frames": [
+          1
+        ],
+        "syn_ack_frames": [
+          2
+        ],
+        "fin_frames": [
+          115,
+          117
+        ],
+        "rst_frames": [],
+        "client": "127.0.0.1",
+        "server": "127.0.0.1",
+        "server_port": "18122"
+      },
+      {
+        "stream": "1",
+        "syn_frames": [
+          119
+        ],
+        "syn_ack_frames": [
+          120
+        ],
+        "fin_frames": [
+          152,
+          154
+        ],
+        "rst_frames": [],
+        "client": "127.0.0.1",
+        "server": "127.0.0.1",
+        "server_port": "18122"
+      }
+    ],
+    "repeated_connection_candidates": [
+      {
+        "client": "127.0.0.1",
+        "server": "127.0.0.1",
+        "server_port": "18122",
+        "streams": [
+          "0",
+          "1"
+        ]
+      }
+    ],
+    "events": [
+      {
+        "frame": 1,
+        "stream": "0",
+        "source": "127.0.0.1",
+        "destination": "127.0.0.1",
+        "source_port": "48277",
+        "destination_port": "18122",
+        "syn": true,
+        "ack": false,
+        "fin": false,
+        "rst": false
+      },
+      {
+        "frame": 2,
+        "stream": "0",
+        "source": "127.0.0.1",
+        "destination": "127.0.0.1",
+        "source_port": "18122",
+        "destination_port": "48277",
+        "syn": true,
+        "ack": true,
+        "fin": false,
+        "rst": false
+      },
+      {
+        "frame": 115,
+        "stream": "0",
+        "source": "127.0.0.1",
+        "destination": "127.0.0.1",
+        "source_port": "48277",
+        "destination_port": "18122",
+        "syn": false,
+        "ack": true,
+        "fin": true,
+        "rst": false
+      },
+      {
+        "frame": 117,
+        "stream": "0",
+        "source": "127.0.0.1",
+        "destination": "127.0.0.1",
+        "source_port": "18122",
+        "destination_port": "48277",
+        "syn": false,
+        "ack": true,
+        "fin": true,
+        "rst": false
+      },
+      {
+        "frame": 119,
+        "stream": "1",
+        "source": "127.0.0.1",
+        "destination": "127.0.0.1",
+        "source_port": "48278",
+        "destination_port": "18122",
+        "syn": true,
+        "ack": false,
+        "fin": false,
+        "rst": false
+      },
+      {
+        "frame": 120,
+        "stream": "1",
+        "source": "127.0.0.1",
+        "destination": "127.0.0.1",
+        "source_port": "18122",
+        "destination_port": "48278",
+        "syn": true,
+        "ack": true,
+        "fin": false,
+        "rst": false
+      },
+      {
+        "frame": 152,
+        "stream": "1",
+        "source": "127.0.0.1",
+        "destination": "127.0.0.1",
+        "source_port": "48278",
+        "destination_port": "18122",
+        "syn": false,
+        "ack": true,
+        "fin": true,
+        "rst": false
+      },
+      {
+        "frame": 154,
+        "stream": "1",
+        "source": "127.0.0.1",
+        "destination": "127.0.0.1",
+        "source_port": "18122",
+        "destination_port": "48278",
+        "syn": false,
+        "ack": true,
+        "fin": true,
+        "rst": false
+      }
+    ],
+    "limits": [
+      "SYN重传按同一TCP流去重，不作为新连接。",
+      "见SYN/ACK不证明MMS关联成功；FIN可能是正常关闭，RST也不直接代表某端软件缺陷。",
+      "没有响应可能是抓包缺失或观察窗口结束；本结果不推断超时定责。",
+      "相同端点多流可能是并发连接，也可能是重连，需核对时间与关闭顺序。"
+    ],
+    "examined_frames": 8,
+    "total_matching_frames": 8,
+    "partial": false,
+    "scope": "最多前120帧连接控制报文；不等于完整TCP/MMS状态机诊断"
+  }
+}

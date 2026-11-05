@@ -1,0 +1,17 @@
+node_modules/
+backend/build/
+backend/build-v2/
+backend/capture/build/
+backend/capture/bin/
+backend/bin/
+backend/generated/
+release/
+.tmp/
+*.log
+backend/capture/test-output/
+backend/capture/vendor/
+
+# Vendored upstream build outputs
+third_party/libiec61850/build-wpf-native/
+third_party/libiec61850/dotnet/IEC61850forCSharp/bin/
+third_party/libiec61850/dotnet/IEC61850forCSharp/obj/

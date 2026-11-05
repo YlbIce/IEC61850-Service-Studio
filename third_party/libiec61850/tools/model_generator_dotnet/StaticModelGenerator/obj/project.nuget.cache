@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "1fYLWCZEgUE=",
+  "success": true,
+  "projectFilePath": "D:\\WORKSPACE\\Electron\\Iec61850ServiceStudio\\third_party\\libiec61850\\tools\\model_generator_dotnet\\StaticModelGenerator\\StaticModelGenerator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\13686\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\13686\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

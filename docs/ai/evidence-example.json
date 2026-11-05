@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "scope": "local research fixture, no external API request",
+  "capture_sha256": "c7cbc69f43ad85213fd40b45f3afa7f809b2710a85ef0dde5ed708857a6ec3b1",
+  "total_frames": 155,
+  "evidence_id": "read-anin1-24",
+  "correlation": {
+    "request_frame": 22,
+    "response_frame": 24,
+    "latency_ms": 0.4140000000000003,
+    "stream": "0",
+    "invoke_id": "3"
+  },
+  "values": [
+    {
+      "reference": "STUDIOLD0/GGIO1.AnIn1.mag.f",
+      "fc": "MX",
+      "mapping": "resolved",
+      "mapping_source": "request-variable-list",
+      "type": "floating-point",
+      "value": 220,
+      "complete": true,
+      "source": "read-response",
+      "replayable": true,
+      "injectable": false,
+      "result_index": 0
+    }
+  ],
+  "warnings": [],
+  "request_top_level_fields": [
+    "frame_raw",
+    "frame",
+    "null_raw",
+    "null",
+    "ip_raw",
+    "ip",
+    "tcp_raw",
+    "tcp",
+    "tpkt_raw",
+    "tpkt",
+    "cotp_raw",
+    "cotp",
+    "ses_raw",
+    "ses",
+    "pres_raw",
+    "pres",
+    "mms_raw",
+    "mms",
+    "mms.response_in"
+  ],
+  "response_top_level_fields": [
+    "frame_raw",
+    "frame",
+    "null_raw",
+    "null",
+    "ip_raw",
+    "ip",
+    "tcp_raw",
+    "tcp",
+    "tpkt_raw",
+    "tpkt",
+    "cotp_raw",
+    "cotp",
+    "ses_raw",
+    "ses",
+    "pres_raw",
+    "pres",
+    "mms_raw",
+    "mms",
+    "mms.response_to",
+    "mms.response_time"
+  ],
+  "limitations": [
+    "Capture observation does not prove downstream application display",
+    "Quality and IED timestamp not supplied for this scalar read",
+    "No DeepSeek live API evaluation has been performed"
+  ]
+}

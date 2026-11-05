@@ -1,0 +1,8 @@
+is_global = true
+build_property.RootNamespace = client_example_log
+build_property.ProjectDir = D:\WORKSPACE\Electron\Iec61850ServiceStudio\third_party\libiec61850\dotnet\core\2.0\client_example_log\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 

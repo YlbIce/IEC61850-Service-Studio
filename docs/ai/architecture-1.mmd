@@ -1,0 +1,14 @@
+flowchart TB
+  U[分析窗口：诊断 / 学习 / 证据导航] --> IPC[主进程受限 AI IPC]
+  IPC --> A[AI 任务编排：范围、预算、取消、结果校验]
+  A --> T[只读工具网关]
+  T --> C[现有 capture-helper / 分析 DLL / TShark]
+  C --> E[本地证据与语义索引]
+  T --> K[审核过的课程 / 规则 / 案例知识库]
+  E --> P[证据裁剪与去标识化]
+  K --> P
+  P --> D[DeepSeek Provider：HTTPS / API Key]
+  D --> A
+  A --> V[引用、schema 与规则事实校验]
+  V --> U
+  S[系统保护的 Key 存储] --> D

@@ -1,0 +1,135 @@
+[
+  {
+    "name": "01-workspace.png",
+    "description": "真实MMS服务在18140端口运行的桌面工作区",
+    "at": "2026-09-10T08:57:03.923Z",
+    "version": "0.2.2",
+    "sha256": "1437a01e979778cf9915499e156e9354f1c8800c9aa6f827a41ab0b259a37f05"
+  },
+  {
+    "name": "02-server-settings.png",
+    "description": "监听地址、端口、远方控制与专用文件目录配置",
+    "at": "2026-09-10T08:57:02.513Z",
+    "version": "0.2.2",
+    "sha256": "8439420b550f008791631a50193583ca01fbd7b0172d1c67c0fc1a87b12e1317"
+  },
+  {
+    "name": "03-attributes.png",
+    "description": "真实对象完整DA树、FC、类型及运行值",
+    "at": "2026-09-10T08:57:17.736Z",
+    "version": "0.2.2",
+    "sha256": "2ead5b3c6d29809cdde74f1b20ac73f7c8de7f138564b5e5ce31d59776b700f0"
+  },
+  {
+    "name": "04-datasets.png",
+    "description": "预定义Measurements与Events数据集",
+    "at": "2026-09-10T08:57:09.363Z",
+    "version": "0.2.2",
+    "sha256": "4c6e7f8cf91b81ca85de9c6ff612906ea38a38fe64ebba51e64e6dd812606ac1"
+  },
+  {
+    "name": "05-reports.png",
+    "description": "配套真实客户端启用报告控制块后的服务端状态",
+    "at": "2026-09-10T08:57:10.623Z",
+    "version": "0.2.2",
+    "sha256": "3dfe8cb1471e34ca965be17a1aea4754d641092de36fe45e219dfa18ae66a604"
+  },
+  {
+    "name": "06-sessions.png",
+    "description": "配套Client Studio通过真实MMS连接服务端",
+    "at": "2026-09-10T08:57:11.869Z",
+    "version": "0.2.2",
+    "sha256": "59872517df1a7b494a9f37e9de4ea6e8a60dadafc9f16a9c235f44c3f4d11d53"
+  },
+  {
+    "name": "07-controls.png",
+    "description": "遥控对象与控制模型监视",
+    "at": "2026-09-10T08:57:13.137Z",
+    "version": "0.2.2",
+    "sha256": "e175226b563c05eec8e979583302c9eb286badc2706651b422d90a571d93fd76"
+  },
+  {
+    "name": "08-simulation.png",
+    "description": "实际运行的波形仿真与更新计数",
+    "at": "2026-09-10T08:57:16.427Z",
+    "version": "0.2.2",
+    "sha256": "fb57568bff2af344930a940ad7d40950f6fff7088c1ddf494e5f455a4d7477fc"
+  },
+  {
+    "name": "09-files.png",
+    "description": "启用后的专用MMS文件目录预览",
+    "at": "2026-09-10T08:57:14.367Z",
+    "version": "0.2.2",
+    "sha256": "27bebf62fac2f7ed1285b514d7ca146039c79fd57a79aad09b8896bd66773fb7"
+  },
+  {
+    "name": "10-tls.png",
+    "description": "TLS凭据配置界面；协议握手证据另见安全集成日志",
+    "at": "2026-09-10T08:57:19.730Z",
+    "version": "0.2.2",
+    "sha256": "8ec3805ea476c88bf4697f83f30b8dc53d63644613969e12b89445144aebeb8e"
+  },
+  {
+    "name": "11-publishers.png",
+    "description": "GOOSE发布配置；截图配置禁用，不向网络发包",
+    "at": "2026-09-10T08:57:20.955Z",
+    "version": "0.2.2",
+    "sha256": "fd47fc29b22f5e6ac7185baa6f2903b20cd22b62e0d98bf11f3c49d9ab9d6542"
+  },
+  {
+    "name": "12-setting-groups.png",
+    "description": "导入实际五组SG/SE模型后的持久化定值组界面",
+    "at": "2026-09-10T08:57:23.639Z",
+    "version": "0.2.2",
+    "sha256": "314a431632bb199bdf49750760cad240c257a866b467fbf8445e35de615edfa3"
+  },
+  {
+    "name": "13-client-model.png",
+    "description": "Client Studio 真实 MMS 模型浏览，mock:false，18140端口",
+    "at": "2026-09-10T08:57:07.086Z",
+    "version": "0.2.2",
+    "sha256": "aede0a4bc6bc8eb0101e1b752cde3ee403b683400d2726915c19f0de4ddd1b11"
+  },
+  {
+    "name": "14-client-read.png",
+    "description": "Client Studio 真实 MMS 属性读取",
+    "at": "2026-09-10T08:57:07.531Z",
+    "version": "0.2.2",
+    "sha256": "9ea5bb9d152e0380e674fba131088ea0c1db5f962687231a0dd33a6ecbb6127d"
+  },
+  {
+    "name": "15-client-dataset.png",
+    "description": "Client Studio 真实 MMS 数据集读取",
+    "at": "2026-09-10T08:57:08.018Z",
+    "version": "0.2.2",
+    "sha256": "2a154db1da311213267a8aacb54c88516a25585afcc7118567d59cacc682213a"
+  },
+  {
+    "name": "16-import.png",
+    "description": "实际CID导入后的模型与源文件信息",
+    "at": "2026-09-10T08:57:22.439Z",
+    "version": "0.2.2",
+    "sha256": "fb04c53b290c028476b4d1811b45971ff5ebc737726749804f146f35d3af9048"
+  },
+  {
+    "name": "17-capture-replay.png",
+    "description": "实际测试PCAPNG的Read响应220与离线累计观察值",
+    "at": "2026-09-10T09:13:10.752Z",
+    "version": "0.2.2",
+    "sha256": "a9431841019458b59ce24dad76663cda81ffdfef7dc85813bc248dfbf3a68d8e"
+  },
+  {
+    "name": "18-capture-sessions.png",
+    "description": "实际测试PCAPNG的会话统计",
+    "at": "2026-09-10T09:13:11.786Z",
+    "version": "0.2.2",
+    "sha256": "3606f2d9df3804806bb54aeecd4ec7a3482592504cababda9d4184d4a83e117d"
+  },
+  {
+    "name": "19-capture-options.png",
+    "description": "实际捕获配置窗口，未启动现场网络捕获",
+    "at": "2026-09-10T09:13:12.904Z",
+    "version": "0.2.2",
+    "sha256": "4289e29a70520b38bf9b353dc2c3c390a41a255a417a6dc66af314f7ffb94606"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "B6QAtdGWA4o=",
+  "success": true,
+  "projectFilePath": "D:\\WORKSPACE\\Electron\\Iec61850ServiceStudio\\third_party\\libiec61850\\dotnet\\server_goose_publisher\\server_goose_publisher.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\13686\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\13686\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

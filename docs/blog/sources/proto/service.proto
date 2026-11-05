@@ -1,0 +1,70 @@
+syntax = "proto3";
+package service_studio;
+service ServiceStudio {
+  rpc Apply(Project) returns (Reply);
+  rpc Start(Empty) returns (Reply);
+  rpc Stop(Empty) returns (Reply);
+  rpc Update(UpdateRequest) returns (Reply);
+  rpc Simulation(SimulationRequest) returns (Reply);
+  rpc Snapshot(Empty) returns (State);
+  rpc GetModel(Empty) returns (Model);
+  rpc Interfaces(Empty) returns (InterfaceList);
+  rpc Settings(Empty) returns (SettingState);
+  rpc ChangeSetting(SettingRequest) returns (Reply);
+}
+message Empty {}
+message Reply { bool ok = 1; string message = 2; }
+message Point {
+  string ld = 1; string ln = 2; string name = 3; string cdc = 4;
+  double value = 5; uint32 quality = 6; string description = 7;
+  uint32 control_model = 8; bool blocked = 9;
+  string waveform = 10; double amplitude = 11; double period = 12;
+}
+message Dataset { string ld = 1; string ln = 2; string name = 3; repeated string members = 4; }
+message Report {
+  string ld = 1; string ln = 2; string name = 3; string dataset = 4;
+  bool buffered = 5; uint32 integrity_ms = 6; uint32 buffer_ms = 7;
+  uint32 triggers = 8; uint32 conf_rev = 9;
+}
+message Project {
+  uint32 version = 1; string name = 2; string ied_name = 3; string host = 4;
+  uint32 port = 5; uint32 max_clients = 6; bool allow_controls = 7;
+  bool file_service = 8; string file_root = 9;
+  repeated Point points = 10; repeated Dataset datasets = 11; repeated Report reports = 12;
+  string config_path = 13;
+  TlsOptions tls = 14;
+  repeated Publisher publishers = 15;
+  string settings_path = 16;
+}
+message UpdateRequest { string reference = 1; double value = 2; uint32 quality = 3; bool blocked = 4; }
+message SimulationRequest { bool enabled = 1; }
+message LivePoint { string reference = 1; double value = 2; uint32 quality = 3; uint64 timestamp = 4; bool blocked = 5; }
+message Event { uint64 sequence = 1; uint64 timestamp = 2; string level = 3; string category = 4; string message = 5; }
+message Session { string address = 1; uint64 since = 2; }
+message LiveReport { string name = 1; bool enabled = 2; string owner = 3; uint64 events = 4; }
+message State {
+  bool running = 1; bool configured = 2; bool simulation = 3; uint64 started_at = 4;
+  repeated LivePoint points = 5; repeated Event events = 6; repeated Session sessions = 7;
+  repeated LiveReport reports = 8; uint64 updates = 9; uint64 controls = 10; string library_version = 11;
+  repeated PublisherStatus publishers = 12;
+  bool tls = 13;
+  string settings_error = 14;
+}
+message Node { string reference = 1; string name = 2; string kind = 3; string fc = 4; string type = 5; string value = 6; uint32 depth = 7; }
+message Model { repeated Node nodes = 1; repeated Dataset datasets = 2; repeated Report reports = 3; string ied_name = 4; repeated string notices = 5; repeated Publisher publisher_templates = 6; }
+message TlsOptions { bool enabled = 1; string certificate = 2; string private_key = 3; string ca = 4; string crl = 5; string peer_certificate = 6; bool tls13_only = 7; }
+message Publisher {
+  string name = 1; string kind = 2; bool enabled = 3; string interface_id = 4;
+  string destination = 5; uint32 app_id = 6; uint32 vlan_id = 7; uint32 priority = 8;
+  string dataset = 9; string control_ref = 10; uint32 conf_rev = 11;
+  uint32 min_ms = 12; uint32 max_ms = 13; uint32 sample_rate = 14;
+  bool vlan = 15; string sv_id = 16;
+}
+message PublisherStatus { string name = 1; string kind = 2; bool running = 3; uint64 frames = 4; uint64 late = 5; string error = 6; uint64 changes = 7; }
+message NetworkInterface { string id = 1; string description = 2; }
+message InterfaceList { repeated NetworkInterface interfaces = 1; }
+message SettingValue { string reference = 1; bytes encoded = 2; string value = 3; string type = 4; }
+message SettingBank { uint32 number = 1; repeated SettingValue values = 2; }
+message SettingDevice { string reference = 1; uint32 active = 2; repeated SettingBank banks = 3; }
+message SettingState { uint32 version = 1; repeated SettingDevice devices = 2; string error = 3; }
+message SettingRequest { string reference = 1; uint32 bank = 2; bool activate = 3; string attribute = 4; string value = 5; }

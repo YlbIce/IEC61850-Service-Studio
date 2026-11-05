@@ -1,0 +1,11 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const {spawnSync} = require('node:child_process');
+const root = path.resolve(__dirname,'..'), dir = path.join(root,'.tmp','packet-store-test');
+fs.mkdirSync(dir,{recursive:true});
+const vs = process.env.VSDEVCMD || 'C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/VsDevCmd.bat';
+const vcpkg = process.env.VCPKG_ROOT || path.resolve(root,'../tools/vcpkg');
+const quote = text => '"'+text.replaceAll('"','')+'"';
+const command = ['@echo off','chcp 65001 >nul',`call ${quote(vs)} -arch=x64 >nul`,'if errorlevel 1 exit /b %errorlevel%', 'set VSLANG=1033', `cl /nologo /EHsc /std:c++17 /MT /O2 /utf-8 /DNOMINMAX /DWIN32_LEAN_AND_MEAN /I${quote(path.join(vcpkg,'installed/x64-windows/include'))} ${quote(path.join(root,'tests/packet-store-native.cpp'))} ${quote(path.join(root,'backend/capture/src/packet_store.cpp'))} /Fe:packet-store-test.exe /link psapi.lib`, 'if errorlevel 1 exit /b %errorlevel%', 'packet-store-test.exe', 'exit /b %errorlevel%', ''].join('\r\n');
+const batch = path.join(dir,'run.cmd');fs.writeFileSync(batch,command);
+const result=spawnSync('cmd.exe',['/d','/c',batch],{cwd:dir,windowsHide:true,stdio:'inherit'});process.exitCode=result.status??1;

@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-10T09:18:11.068Z",
+  "page": {
+    "images": 24,
+    "broken": [],
+    "overflow": false,
+    "headings": 12
+  },
+  "examples": {
+    "scenario": {
+      "passed": true,
+      "port": 18142,
+      "values": [
+        220,
+        231.5,
+        0
+      ],
+      "validation": "native Snapshot readback"
+    },
+    "export": {
+      "passed": true,
+      "frames": 155,
+      "completeReplayableObservations": 10,
+      "port": 18122
+    }
+  },
+  "screenshots": {
+    "count": 19,
+    "source": "actual Electron capturePage",
+    "clientConnection": "real MMS, mock:false, 127.0.0.1:18140"
+  },
+  "diagrams": 5
+}

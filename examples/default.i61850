@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "name": "变电站联调工程",
+  "ied_name": "STUDIO",
+  "host": "127.0.0.1",
+  "port": 102,
+  "max_clients": 8,
+  "allow_controls": true,
+  "file_service": false,
+  "file_root": "",
+  "points": [
+    {
+      "ld": "LD0",
+      "ln": "LLN0",
+      "name": "Health",
+      "cdc": "INS",
+      "value": 1,
+      "description": "装置健康状态",
+      "quality": 0,
+      "control_model": 1,
+      "blocked": false,
+      "waveform": "constant",
+      "amplitude": 1,
+      "period": 10
+    },
+    {
+      "ld": "LD0",
+      "ln": "GGIO1",
+      "name": "AnIn1",
+      "cdc": "MV",
+      "value": 220,
+      "description": "A 相电压 / V",
+      "quality": 0,
+      "control_model": 1,
+      "blocked": false,
+      "waveform": "sine",
+      "amplitude": 5,
+      "period": 10
+    },
+    {
+      "ld": "LD0",
+      "ln": "GGIO1",
+      "name": "AnIn2",
+      "cdc": "MV",
+      "value": 220,
+      "description": "B 相电压 / V",
+      "quality": 0,
+      "control_model": 1,
+      "blocked": false,
+      "waveform": "sine",
+      "amplitude": 4,
+      "period": 12
+    },
+    {
+      "ld": "LD0",
+      "ln": "GGIO1",
+      "name": "AnIn3",
+      "cdc": "MV",
+      "value": 220,
+      "description": "C 相电压 / V",
+      "quality": 0,
+      "control_model": 1,
+      "blocked": false,
+      "waveform": "sine",
+      "amplitude": 3,
+      "period": 14
+    },
+    {
+      "ld": "LD0",
+      "ln": "GGIO1",
+      "name": "AnIn4",
+      "cdc": "MV",
+      "value": 50,
+      "description": "系统频率 / Hz",
+      "quality": 0,
+      "control_model": 1,
+      "blocked": false,
+      "waveform": "sine",
+      "amplitude": 0.05,
+      "period": 20
+    },
+    {
+      "ld": "LD0",
+      "ln": "GGIO1",
+      "name": "Ind1",
+      "cdc": "SPS",
+      "value": 0,
+      "description": "告警输入",
+      "quality": 0,
+      "control_model": 1,
+      "blocked": false,
+      "waveform": "constant",
+      "amplitude": 1,
+      "period": 10
+    },
+    {
+      "ld": "LD0",
+      "ln": "GGIO1",
+      "name": "SPCSO1",
+      "cdc": "SPC",
+      "value": 0,
+      "description": "直接控制输出",
+      "quality": 0,
+      "control_model": 1,
+      "blocked": false,
+      "waveform": "constant",
+      "amplitude": 1,
+      "period": 10
+    },
+    {
+      "ld": "LD0",
+      "ln": "GGIO1",
+      "name": "SPCSO2",
+      "cdc": "SPC",
+      "value": 0,
+      "description": "SBO 增强控制输出",
+      "quality": 0,
+      "control_model": 4,
+      "blocked": false,
+      "waveform": "constant",
+      "amplitude": 1,
+      "period": 10
+    },
+    {
+      "ld": "LD0",
+      "ln": "XCBR1",
+      "name": "Pos",
+      "cdc": "DPC",
+      "value": 1,
+      "description": "断路器位置 · 分位",
+      "quality": 0,
+      "control_model": 4,
+      "blocked": false,
+      "waveform": "constant",
+      "amplitude": 1,
+      "period": 10
+    },
+    {
+      "ld": "LD0",
+      "ln": "GGIO1",
+      "name": "IntIn1",
+      "cdc": "INS",
+      "value": 0,
+      "description": "累计动作次数",
+      "quality": 0,
+      "control_model": 1,
+      "blocked": false,
+      "waveform": "constant",
+      "amplitude": 1,
+      "period": 10
+    }
+  ],
+  "datasets": [
+    {
+      "ld": "LD0",
+      "ln": "LLN0",
+      "name": "Measurements",
+      "members": [
+        "LD0/GGIO1.AnIn1",
+        "LD0/GGIO1.AnIn2",
+        "LD0/GGIO1.AnIn3",
+        "LD0/GGIO1.AnIn4"
+      ]
+    },
+    {
+      "ld": "LD0",
+      "ln": "LLN0",
+      "name": "Events",
+      "members": [
+        "LD0/GGIO1.Ind1",
+        "LD0/GGIO1.SPCSO1",
+        "LD0/GGIO1.SPCSO2",
+        "LD0/XCBR1.Pos"
+      ]
+    }
+  ],
+  "reports": [
+    {
+      "ld": "LD0",
+      "ln": "LLN0",
+      "name": "Measurements01",
+      "dataset": "Measurements",
+      "buffered": false,
+      "integrity_ms": 5000,
+      "buffer_ms": 100,
+      "triggers": 27,
+      "conf_rev": 1
+    },
+    {
+      "ld": "LD0",
+      "ln": "LLN0",
+      "name": "Events01",
+      "dataset": "Events",
+      "buffered": true,
+      "integrity_ms": 10000,
+      "buffer_ms": 50,
+      "triggers": 27,
+      "conf_rev": 1
+    }
+  ]
+}

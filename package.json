@@ -1,0 +1,98 @@
+{
+  "name": "iec61850-service-studio",
+  "version": "0.3.5",
+  "description": "IEC61850 Service Studio — desktop IED engineering and MMS server",
+  "main": "src/main/main.js",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "start": "node scripts/run-electron.js",
+    "dev": "node scripts/run-electron.js --dev",
+    "build:backend": "node scripts/build-backend.js",
+    "check": "node scripts/check.js",
+    "test": "node --test tests/*.test.js",
+    "test:integration": "node scripts/integration.js",
+    "test:ui": "node scripts/test-ui.js",
+    "dist": "npm run build:backend && npm run build:capture && npm run check && node scripts/check-release.js && electron-builder --win nsis zip",
+    "test:security": "node scripts/test-security.js",
+    "test:publishers": "node scripts/test-publishers.js",
+    "format": "prettier --write \"src/**/*.{js,mjs,css,html}\" \"scripts/*.js\"",
+    "build:capture": "node scripts/build-capture.js",
+    "test:capture": "node scripts/test-capture-backend.js",
+    "test:capture-ui": "node tests/capture-ui-run.js",
+    "test:packet-store": "node scripts/test-packet-store.js",
+    "test:replay": "node scripts/test-replay-integration.js",
+    "test:no-settings": "node scripts/test-no-setting-groups.js",
+    "dist:portable": "npm run check && node scripts/check-release.js && electron-builder --win zip",
+    "test:ai": "node --test tests/capture-ai.test.js",
+    "test:ai-ui": "node scripts/test-ai-ui.js",
+    "test:theme": "node scripts/test-theme.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.4",
+    "@grpc/proto-loader": "^0.8.1",
+    "fast-xml-parser": "^5.3.0",
+    "markdown-it": "^15.0.1"
+  },
+  "devDependencies": {
+    "electron": "39.8.10",
+    "electron-builder": "^26.15.3",
+    "prettier": "^3.6.2"
+  },
+  "build": {
+    "appId": "com.ybl.iec61850servicestudio",
+    "productName": "IEC61850 Service Studio",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "src/**/*",
+      "proto/**/*",
+      "tools/genconfig.jar",
+      "build/icon.ico",
+      "docs/**/*",
+      "examples/**/*",
+      "README.md",
+      "LICENSE",
+      "package.json",
+      "backend/capture/README.md"
+    ],
+    "asarUnpack": [
+      "tools/genconfig.jar"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/bin",
+        "to": "backend/bin",
+        "filter": [
+          "iec61850-service-backend.exe",
+          "*.dll"
+        ]
+      },
+      {
+        "from": "backend/capture/bin",
+        "to": "capture",
+        "filter": [
+          "capture-helper.exe",
+          "iec61850-capture.dll",
+          "wireshark/**/*"
+        ]
+      }
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "IEC61850-Service-Studio-${version}-Portable.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "artifactName": "IEC61850 Service Studio Setup ${version}.${ext}"
+    }
+  }
+}

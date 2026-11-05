@@ -1,0 +1,69 @@
+flowchart TB
+  subgraph SERVICE[Service Studio：桌面进程边界]
+    UI["渲染进程
+模型树 / 虚拟表格 / 属性弹窗
+工程、协议与仿真界面"]
+    PRE["Sandbox preload
+contextBridge：studio.command"]
+    MAIN["Electron 主进程
+原生菜单 / 窗口 / IPC 校验
+工程存储 / 后端生命周期"]
+    UI <-->|受限 IPC| PRE
+    PRE <--> MAIN
+  end
+  subgraph NATIVE[iec61850-service-backend.exe]
+    RPC["gRPC ManagementService
+随机本机端口 + 随机令牌"]
+    ENGINE["ServerEngine
+Apply / Start / Stop / Update
+模型构建、浏览、控制回调"]
+    SETTINGS["SettingStore
+SG/SE 数据定值库 / 事务确认"]
+    TLS["TlsContext + mbedTLS
+证书验证 / 密钥校验"]
+    PUB["PublisherService
+GOOSE 重传 / SV 调度线程"]
+    LIB["libiec61850 1.6.1
+MMS / 报告 / 控制 / 文件服务"]
+    RPC <--> ENGINE
+    ENGINE <--> SETTINGS
+    ENGINE <--> LIB
+    TLS --> LIB
+    ENGINE --> PUB
+  end
+  MAIN <-->|本机 gRPC / Protobuf| RPC
+  STORE[("工程 JSON / 内嵌 CFG
+恢复文件 / 审计
+独立 settings banks")]
+  MAIN <--> STORE
+  SETTINGS -->|BER + 原子替换| STORE
+  INPUT["ICD / CID / SCD / IID / CFG"] --> IMPORT["主进程预检
+Java genconfig / 独立 CFG 校验"]
+  IMPORT --> MAIN
+  MAIN -->|按需打开| CUI
+  subgraph OPTIONAL[可选分析组件：独立故障域]
+    CUI["独立分析窗口 + Capture IPC
+沙盒 / 分页 / 离线回放"]
+    HELPER["capture-helper.exe
+JSONL / C ABI 动态加载"]
+    DLL["iec61850-capture.dll
+会话关联 / MMS 语义 / 回放索引"]
+    TOOLS["TShark / Dumpcap 子进程
+Windows Job 生命周期隔离"]
+    INDEX[("PCAP / PCAPNG
+临时磁盘索引 + 有界缓存")]
+    CUI <-->|受控 JSONL| HELPER
+    HELPER <--> DLL
+    DLL <--> TOOLS
+    DLL <--> INDEX
+    TOOLS --> INDEX
+  end
+  CUI -.->|显式映射：仅测量值| MAIN
+  CLIENT["配套 Client Studio
+Electron + 客户端 C++ 后端
+或第三方 MMS 客户端"]
+  CLIENT <-->|真实 MMS / 可选 TLS| LIB
+  NET["网卡 / Npcap
+以太网 GOOSE、SV"]
+  PUB --> NET
+  NET -->|捕获范围取决于网卡| TOOLS

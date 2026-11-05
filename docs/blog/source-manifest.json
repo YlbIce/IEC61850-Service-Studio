@@ -1,0 +1,112 @@
+[
+  {
+    "original": "src/main/importer.js",
+    "copy": "sources/src/main/importer.js",
+    "sha256": "b8fc8144a80dfd8350e566332f831a502f15152efad7e2e0b0fd4d79f2e6f8e5"
+  },
+  {
+    "original": "src/main/storage.js",
+    "copy": "sources/src/main/storage.js",
+    "sha256": "c6c2340bcb89c85dbe3589201c147a77490a4df64d0ba872a8231f3f771b7e48"
+  },
+  {
+    "original": "README.md",
+    "copy": "sources/README.md",
+    "sha256": "19ddb1d330d09fbfb59f2c85012cd76835662789223f3cb9c88d1be863aa009b"
+  },
+  {
+    "original": "proto/service.proto",
+    "copy": "sources/proto/service.proto",
+    "sha256": "2841a59c7614bb9f514dc43cb3da4571fa095fc0f1b7353ba5f781192f50feae"
+  },
+  {
+    "original": "src/main/backend.js",
+    "copy": "sources/src/main/backend.js",
+    "sha256": "0b57dac65eb6952b1647d63ce8ba3d3336f89b58a136272fea7006af63e359eb"
+  },
+  {
+    "original": "src/main/main.js",
+    "copy": "sources/src/main/main.js",
+    "sha256": "05db8a8804b4ac67f1253cbce838ad5f23f868b8bf9cb7b976fd59aafc67ca9b"
+  },
+  {
+    "original": "backend/src/main.cpp",
+    "copy": "sources/backend/src/main.cpp",
+    "sha256": "b1dca204c0e63191bf20003e1f0e37bdef54d8d1dd12fb91b14a3457fc07ece5"
+  },
+  {
+    "original": "docs/ARCHITECTURE.md",
+    "copy": "sources/docs/ARCHITECTURE.md",
+    "sha256": "6e3feb5382b2a80281ef3ff865272e4cf50654195e474e4468d430527438d9af"
+  },
+  {
+    "original": "backend/src/publisher_service.cpp",
+    "copy": "sources/backend/src/publisher_service.cpp",
+    "sha256": "d89e72903d9e74caa217040cfd2eb334f78b9b29726e88bf4420486a926dbea3"
+  },
+  {
+    "original": "backend/src/publisher_model.cpp",
+    "copy": "sources/backend/src/publisher_model.cpp",
+    "sha256": "ed4213196cfaeee564b1a549e4bb130e5dbb32f9838bd9c77e3d4a5d40144a49"
+  },
+  {
+    "original": "backend/src/tls_context.cpp",
+    "copy": "sources/backend/src/tls_context.cpp",
+    "sha256": "3dc53c24b91c784eb2bf8a94c7a7c7af332f9721eaa744abbd77d8dff86bc483"
+  },
+  {
+    "original": "backend/src/setting_store.cpp",
+    "copy": "sources/backend/src/setting_store.cpp",
+    "sha256": "2de9f0738b4cebaf4aea084b386b8f9a834912767a7f11627c8b3c386f61c73f"
+  },
+  {
+    "original": "backend/src/control_handlers.cpp",
+    "copy": "sources/backend/src/control_handlers.cpp",
+    "sha256": "28764dc1702c92a90b42aebb161be3f8cdda0c979bd9f9772b09f103c909a49d"
+  },
+  {
+    "original": "scripts/test-no-setting-groups.js",
+    "copy": "sources/scripts/test-no-setting-groups.js",
+    "sha256": "02d58c90b2691bde87db0d47a51a7edb64b2cc02863ccbc487e5a461e1651850"
+  },
+  {
+    "original": "backend/capture/README.md",
+    "copy": "sources/backend/capture/README.md",
+    "sha256": "4a24fdaaa3ebe2bd900ec2115241e4f21b3509ba122f41773deeaa2957ce8d2a"
+  },
+  {
+    "original": "docs/CAPTURE-REQUIREMENTS.md",
+    "copy": "sources/docs/CAPTURE-REQUIREMENTS.md",
+    "sha256": "9ef2d692a41745f613c6fb38e84a83f3c789df811c0d914702bdc50007d6a523"
+  },
+  {
+    "original": "src/main/replay-target.js",
+    "copy": "sources/src/main/replay-target.js",
+    "sha256": "93effc7018ccd8c4e6ad5633c33ae13e5d53c7b48bc16b2f62d67da32c719ec9"
+  },
+  {
+    "original": "src/capture/helper-client.js",
+    "copy": "sources/src/capture/helper-client.js",
+    "sha256": "ec157f4670b7ba74c5b084256ae1d7b339771e5b29fa6d4530827e839debb278"
+  },
+  {
+    "original": "docs/VALIDATION.md",
+    "copy": "sources/docs/VALIDATION.md",
+    "sha256": "4993d70a9741eea459e61066a39df6544d6bbb18a73a2e0587f22f7c70da13df"
+  },
+  {
+    "original": "docs/CAPTURE-VALIDATION.md",
+    "copy": "sources/docs/CAPTURE-VALIDATION.md",
+    "sha256": "78ef29c63e761d6aea10484c8f021023be4fc17650626c34277c7246531609d0"
+  },
+  {
+    "original": "docs/CAPTURE-RESEARCH.md",
+    "copy": "sources/docs/CAPTURE-RESEARCH.md",
+    "sha256": "365cd88cec96df00367ebd8739be158c8aabafe7f77a223b3fe07d553f145f7f"
+  },
+  {
+    "original": "docs/STARTUP-PERFORMANCE.md",
+    "copy": "sources/docs/STARTUP-PERFORMANCE.md",
+    "sha256": "cbcc2f6ee6cce0e9f8334a58be80f7b9f96445911a779d3d6d2ad3272aef147a"
+  }
+]

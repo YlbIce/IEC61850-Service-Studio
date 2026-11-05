@@ -1,0 +1,12 @@
+[
+  {
+    "label": "self-extract",
+    "startup_ms": 32369,
+    "exe": "D:\\WORKSPACE\\Electron\\Iec61850ServiceStudio\\release\\IEC61850-Service-Studio-0.2.1-Portable.exe"
+  },
+  {
+    "label": "directory",
+    "startup_ms": 1434,
+    "exe": "D:\\WORKSPACE\\Electron\\Iec61850ServiceStudio\\release\\win-unpacked\\IEC61850 Service Studio.exe"
+  }
+]

@@ -1,0 +1,22 @@
+sequenceDiagram
+  participant U as 用户
+  participant W as AI面板
+  participant A as 本地任务编排
+  participant C as 证据工具
+  participant D as DeepSeek
+  U->>W: 解释第24帧 / 调查读数异常
+  W->>A: 捕获ID、所选帧、模式、问题
+  A->>C: 提取关联与类型化值
+  C-->>A: 第22/24帧及证据ID、限制
+  A->>A: 范围校验、去标识化、预算检查
+  A->>D: 最小证据和受限工具定义
+  opt 需要更多上下文
+    D-->>A: 只读工具请求
+    A->>C: 校验参数后执行
+    C-->>A: 有界结果与覆盖范围
+    A->>D: 经数据策略处理的工具结果
+  end
+  D-->>A: 带证据ID的结构化讲解/诊断
+  A->>A: 校验引用和可验证事实
+  A-->>W: 结论、限制、跳转动作
+  U->>W: 点击证据返回原报文
